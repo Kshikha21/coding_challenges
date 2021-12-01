@@ -1,0 +1,41 @@
+@charset "ISO-8859-1";
+   #participant
+    {
+        display:  table;
+        width:auto;
+        background-color:#eee;
+        border:1px solid  #666666;
+        border-spacing:5px;/cellspacing:poor IE support for  this/
+       /* border-collapse:separate;*/
+    }
+
+    tr
+    {
+       display:table-row;
+       width:auto;
+    }
+
+    #participant {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: auto;
+}
+
+#participant td, #participant th {
+	border: 1px solid #ddd;
+	padding: 8px;
+	 float:left;/fix for  buggy browsers/
+        display:table-column;
+        width:200px;
+        background-color:#ccc;
+}
+
+
+
+#participant th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}

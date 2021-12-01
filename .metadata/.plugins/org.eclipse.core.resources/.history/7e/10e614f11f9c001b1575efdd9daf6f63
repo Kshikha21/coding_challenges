@@ -1,0 +1,101 @@
+package com.mindtree.activity.service.serviceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.activity.entity.Patient;
+import com.mindtree.activity.entity.QuarantineCenter;
+import com.mindtree.activity.repository.PatientRepository;
+import com.mindtree.activity.repository.QuarantineCenterRepository;
+import com.mindtree.activity.service.QuarantineService;
+
+@Service
+public class QuarantineServiceImpl implements QuarantineService {
+
+	
+	@Autowired
+	PatientRepository repoP;
+	
+	@Autowired
+	QuarantineCenterRepository repoQ;
+	
+	
+	
+	@Override
+	public void save(QuarantineCenter newactivity) {
+		
+		// TODO Auto-generated method stub
+		try {
+			repoQ.save(newactivity);}
+		catch(DataAccessException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	@Override
+	public void save(Patient parti) {
+		repoP.save(parti);
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public QuarantineCenter display(String activity) {
+	QuarantineCenter activities=new QuarantineCenter();
+	activities=repoQ.findByActivity(activity);
+	   return activities;
+		
+	}
+
+
+	@Override
+	public List<Patient> displayParticipant() {
+		// TODO Auto-generated method stub
+		List<Patient> p=new ArrayList<>();
+		List<String> p2=new ArrayList<>();
+		p=repoP.findAll();
+//p2=p.stream().map(n->n.getName()).collect(Collectors.toList());
+		return p;
+	}
+
+
+	@Override
+	public void deleteParticipant(int id) {
+		// TODO Auto-generated method stub
+	//	repoP.deleteById(id);
+		List<QuarantineCenter> list=repoQ.findAll();
+		list.remove(id);
+		repoQ.deleteById(id);
+		repoQ.deleteAll();
+		System.out.println("delete from service");
+		repoQ.saveAll(list);
+		
+	}
+
+
+	@Override
+	public void update(QuarantineCenter parti, int id) {
+		List<QuarantineCenter> list=repoQ.findAll();
+		list.remove(parti.getQuarantineID());
+		list.add(parti);
+		repoQ.deleteAll();
+		repoQ.saveAll(list);
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public List<QuarantineCenter> getAllQuarantineCenter() {
+		// TODO Auto-generated method stub
+		return repoQ.findAll();
+	}
+
+}

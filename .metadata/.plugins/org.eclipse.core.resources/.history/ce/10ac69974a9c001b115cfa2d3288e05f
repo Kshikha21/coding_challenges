@@ -1,0 +1,26 @@
+package com.mindtree.activity.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.activity.entity.Patient;
+import com.mindtree.activity.entity.QuarantineCenter;
+import com.mindtree.activity.exception.ServiceException;
+
+@Service
+public interface QuarantineService {
+
+public	void save(QuarantineCenter newactivity) throws ServiceException;
+
+public void save(Patient parti);
+
+public QuarantineCenter display(String activity);
+
+public List<Patient> displayParticipant();
+
+
+public void updateCenter(QuarantineCenter qc) ;
+public void deleteCenter(int id);
+
+}

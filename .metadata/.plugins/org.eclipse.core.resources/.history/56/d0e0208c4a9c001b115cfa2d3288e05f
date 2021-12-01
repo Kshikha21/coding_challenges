@@ -1,0 +1,117 @@
+package com.mindtree.activity.service.serviceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.activity.entity.Patient;
+import com.mindtree.activity.entity.QuarantineCenter;
+import com.mindtree.activity.exception.ServiceException;
+import com.mindtree.activity.repository.PatientRepository;
+import com.mindtree.activity.repository.QuarantineCenterRepository;
+import com.mindtree.activity.service.QuarantineService;
+
+@Service
+public class QuarantineServiceImpl implements QuarantineService {
+
+	
+	@Autowired
+	PatientRepository repoP;
+	
+	@Autowired
+	QuarantineCenterRepository repoQ;
+	
+	
+	
+	@Override
+	public void save(QuarantineCenter newactivity) throws ServiceException {
+		
+		// TODO Auto-generated method stub
+		if(repoQ.findByName(newactivity.getPlaceName())==null) {
+			repoQ.save(newactivity);
+		}
+		else {
+			throw new ServiceException("duplicate name present");
+		}	
+		
+	}
+
+
+	@Override
+	public void save(Patient parti) {
+		repoP.save(parti);
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public QuarantineCenter display(String activity) {
+	QuarantineCenter activities=new QuarantineCenter();
+  	activities=repoQ.findByName(activity);
+	   return activities;
+		
+	}
+
+
+	@Override
+	public List<Patient> displayParticipant() {
+		// TODO Auto-generated method stub
+		List<Patient> p=new ArrayList<>();
+		List<String> p2=new ArrayList<>();
+		p=repoP.findAll();
+//p2=p.stream().map(n->n.getName()).collect(Collectors.toList());
+		return p;
+	}
+
+
+
+
+	@Override
+	public void update(QuarantineCenter parti) {
+	//	List<QuarantineCenter> list=repoQ.findAll();
+	//	list.remove(parti.getQuarantineID());
+	//	list.add(parti);
+	//	repoQ.deleteAll();
+	//	repoQ.saveAll(list);
+		repoQ.save(parti);
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public List<QuarantineCenter> getAllQuarantineCenter() {
+		// TODO Auto-generated method stub
+		return repoQ.findAll();
+	}
+
+
+	@Override
+	public void updateCenter(QuarantineCenter qc) {
+		// TODO Auto-generated method stub
+		QuarantineCenter qcenter = repoQ.findById(qc.getQuarantineID()).orElse(null);
+
+		if (qcenter != null) {
+			qcenter.setPlaceName(qc.getPlaceName());
+			qcenter.setStrength(qc.getStrength());
+			repoQ.save(qcenter);
+		}
+		
+	}
+
+	@Override
+	public void deleteCenter(int id) {
+		// TODO Auto-generated method stub
+		System.out.println(id);
+		repoQ.deleteById(id);
+		
+		
+	}
+
+	
+
+}

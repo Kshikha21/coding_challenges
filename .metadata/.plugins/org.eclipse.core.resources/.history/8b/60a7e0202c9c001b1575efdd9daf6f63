@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validation() {
+	var name = document.forms["myForm"]["name"];
+	if ((name.value == "") || (name.value.length <= 2)) {
+		window.alert("Please enter  name and length more than 2.");
+		name.focus();
+		return false;
+	} else {
+		var format = /^[A-Za-z]+$/;
+		if (!name.value.match(format)) {
+			window.alert("please enter name only with letters ");
+			name.focus();
+			return false;
+		}
+	}
+	if (age.value == "") {
+		window.alert("Please enter your age.");
+		age.focus();
+		return false;
+	} else {
+		if ( !( age.value > 1 && age.value<100 ) ){
+			window.alert("please enter age in numbers format");
+			age.focus();
+			return false;
+		}
+	}
+}
+
+
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="storeactivity" onsubmit="return validation()">
+placeName :<input type=text" name="name"/><br><br>
+
+strength<input type="text" name="name"/><br><br>
+
+<input type="submit" value="submit"><br><br>
+
+
+
+
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+package com.mindtree.activity.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Participants {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int participantId;
+	private String name;
+	private int age;
+
+	@OneToOne(cascade=CascadeType.ALL)
+	private Activity activity;
+	public Participants() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Participants(int participantId, String name, int age, Activity activity) {
+		super();
+		this.participantId = participantId;
+		this.name = name;
+		this.age = age;
+		this.activity = activity;
+	}
+
+	public Participants(int participantId, Activity activity) {
+		super();
+		this.participantId = participantId;
+		this.activity = activity;
+	}
+	
+
+	public Participants(String name2, int age2, Activity act) {
+		// TODO Auto-generated constructor stub
+		
+		this.name=name2;
+		this.age=age2;
+		this.activity=act;
+	}
+
+	public int getParticipantId() {
+		return participantId;
+	}
+	public void setParticipantId(int participantId) {
+		this.participantId = participantId;
+	}
+	public Activity getActivity() {
+		return activity;
+	}
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Participants [participantId=" + participantId + ", name=" + name + ", age=" + age + ", activity="
+				+ activity + "]";
+	}
+
+	
+	
+
+}

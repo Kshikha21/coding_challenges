@@ -1,0 +1,12 @@
+package com.mindtree.student.entity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Duration {
+
+	public Duration(int studentId, int totalDuration) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

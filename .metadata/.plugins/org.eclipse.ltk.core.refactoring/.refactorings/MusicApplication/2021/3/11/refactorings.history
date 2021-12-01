@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;MusicApplication/src/main/java/com/mindtree/music/service/Service.java&apos; to &apos;MusicService.java&apos;" description="Rename resource &apos;Service.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/mindtree/music/service/Service.java" name="MusicService.java" stamp="1615197903366" updateReferences="true"/>
+</session>

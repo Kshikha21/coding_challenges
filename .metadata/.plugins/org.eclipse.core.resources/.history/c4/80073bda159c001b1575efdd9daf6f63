@@ -1,0 +1,15 @@
+package com.mindtree.activity.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface QuarantineCenterRepository  extends JpaRepository<QuarantineCenter,Integer> {
+
+	
+	@Query("select c from Activity c where c.name=?1")
+	QuarantineCenter findByActivity(String activity);
+
+}

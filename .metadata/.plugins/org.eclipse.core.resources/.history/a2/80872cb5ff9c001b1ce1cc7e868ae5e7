@@ -1,0 +1,9 @@
+package com.mindtree.student.entity;
+
+public class Duration {
+
+	public Duration(int studentId, int totalDuration) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

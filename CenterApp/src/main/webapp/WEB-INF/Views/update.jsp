@@ -1,0 +1,113 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>update</title>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style type="text/css">
+
+    #participant
+    {
+        display:  table;
+        width:auto;
+        background-color:#eee;
+        border:1px solid  #666666;
+        border-spacing:5px;/cellspacing:poor IE support for  this/
+       /* border-collapse:separate;*/
+    }
+
+    tr
+    {
+       display:table-row;
+       width:auto;
+    }
+
+    #participant {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: auto;
+}
+
+#participant td, #participant th {
+	border: 1px solid #ddd;
+	padding: 8px;
+	 float:left;/fix for  buggy browsers/
+        display:table-column;
+        width:200px;
+        background-color:#ccc;
+}
+
+
+
+#participant th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}
+
+</style>
+<script>  
+
+function validateForm() {
+  var x = document.forms["myForm"]["place"].value;
+  var y = document.forms["myForm"]["strength"].value;
+  if (x == "") {
+    alert("place must be filled out");
+    return false;
+  }
+  if (y == "") {
+	    alert("place must be filled out");
+	    return false;
+	  }
+  if (y >1000 ) {
+	    alert("tooo many people reduce the strength");
+	    return false;
+	  }
+  
+}
+</script>
+<script type="text/javascript" src="resources/js/validateUpdate.js"></script>
+</head>
+<body>
+<h3>Quarantine center list</h3>
+<div>
+<%-- <table id="part">
+			<tr>
+				
+				<th>Id</th>
+				<th>Name</th>
+				<th>strength</th>
+				
+
+			</tr>
+			<c:forEach var="part" items="${list}">
+				<tr>
+					
+					<td>${part.quarantineID}</td>
+					<td>${part.placeName}</td>
+					<td>${part.strength}</td>
+				</tr>
+			</c:forEach>
+		</table>
+</div>
+ --%><h3>Update form</h3>
+<div>
+	<form action="/updateCenter" name="myForm" onsubmit ="return validationForm()">
+	<label for="id">Enter id</label><br> <input
+			type="text" id="id" name="id" placeholder="id"><br>
+		<label for="place">Enter place</label><br> <input
+			type="text" id="place" name="place" placeholder="place"><br>
+
+		<label for="strength">Enter strength</label><br> <input
+			type="text" id="strength" name="strength" placeholder="strength"><br>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+</body>
+</html>
